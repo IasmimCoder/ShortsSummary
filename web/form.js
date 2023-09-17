@@ -1,4 +1,4 @@
-import { server } from "./server"
+import { server } from "./server.js"
 
 const form = document.querySelector("#form")
 const input = document.querySelector("#url")
@@ -23,10 +23,10 @@ form.addEventListener("submit", async (event) => {
 
   content.textContent = "Realizando o resumo..."
 
-  /*const summary = await server.post("/summary", {
-    text: transcription.data.result
-  })*/
+  const summary = await server.post("/summary", {
+    text: transcription.data.result,
+  })
 
-  content.textContent = transcription.data.result
+  content.textContent = summary.data.result
   content.classList.remove("placeholder")
 })
