@@ -13,12 +13,12 @@ app.get("/summary/:id", async (request, response) => {
   await download(request.params.id)
   const result = await transcribe()
 
-  response.json({ result })
+  return response.json({ result })
 })
 
-app.post("/summary", (request, response) => {
-  summarize(request.body.text)
-  return response.json({ result })
+app.post("/summary", async (request, response) => {
+  const result = await summarize(request.body.text)
+  response.json({ result })
 })
 
 app.listen(3333, () => console.log("Server is running on port 3333"))
